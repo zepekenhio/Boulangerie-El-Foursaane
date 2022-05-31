@@ -1,0 +1,39 @@
+{%extends 'boulanger/base_template.html' %}
+{% load crispy_forms_tags %}
+
+{%block content%}
+<div class="container">
+    <h4>Listes de tous les personnelles</h4>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Catègorie</th>
+                    <th scope="col">Prènom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for employee in employees %}
+                  <tr>
+                    <th scope="row">{{employee.category}}</th>
+                    <td>{{employee.first_name}}</td>
+                    <td>{{employee.last_name}}</td>
+                    <td>{{employee.resgistration_id}}</td>
+                    <td>{{employee.address}}</td>
+                    <td>{{employee.contact}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>
+{%endblock%}
+

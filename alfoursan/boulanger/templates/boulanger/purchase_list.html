@@ -1,0 +1,40 @@
+{%extends 'boulanger/base_template.html' %}
+{% load crispy_forms_tags %}
+
+{%block content%}
+<div class="container">
+    <h4>Listes des achats de matière première</h4>
+    <a class="btn btn-primary sm" href="{% url 'add-purchase' %}">
+        Ajouter une Matière
+    </a>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix Unitaire</th>
+                    <th scope="col">Montant</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for purchase in purchases %}
+                  <tr>
+                    <td>{{purchase.material}}</td>
+                    <td>{{purchase.description}}</td>
+                    <td>{{purchase.quantity}}</td>
+                    <td>{{purchase.unit_price}}</td>
+                    <td>{{purchase.amount}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>
+{%endblock%}
+

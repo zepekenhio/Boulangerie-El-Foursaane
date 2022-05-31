@@ -1,0 +1,58 @@
+{%extends 'boulanger/base_template.html' %}
+{% load crispy_forms_tags %}
+
+{%block content%}
+<div class="container">
+    <h4>Coût de production</h4>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Coût</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix Unitaire</th>
+                    <th scope="col">Montant</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for cost in costs %}
+                  <tr>
+                    <td>{{cost.cost}}</td>
+                    <td>{{cost.description}}</td>
+                    <td>{{cost.quantity}}</td>
+                    <td>{{cost.unit_price}}</td>
+                    <td>{{cost.amount}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Coût Unitaire</th>
+                    <th scope="col">Coût global</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{production.description}}</td>
+                    <td>{{production.quantity}}</td>
+                    {% for cost in costs %}
+                    <td>{{cost.amount.sum}}</td>
+                    {% endfor %}
+                  </tr>
+                </tbody>
+              </table>
+              {% comment %} {{pcost}} {% endcomment %}
+        </div>
+    </div>
+</div>
+{%endblock%}
+

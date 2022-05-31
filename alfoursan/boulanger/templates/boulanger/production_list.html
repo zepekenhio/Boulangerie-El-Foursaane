@@ -1,0 +1,47 @@
+{%extends 'boulanger/base_template.html' %}
+{% load crispy_forms_tags %}
+
+{%block content%}
+<div class="container">
+    <h4>Listes des achats de matière première</h4>
+    <a class="btn btn-primary sm" href="{% url 'add-production' %}">
+        Ajouter une produition
+    </a>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID Production</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Pèriode</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantité</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for production in productions %}
+                  <tr>
+                    <td>{{production.production_id}}</td>
+                    <td>{{production.date}}</td>
+                    <td>{{production.period}}</td>
+                    <td>{{production.product}}</td>
+                    <td>{{production.description}}</td>
+                    <td>{{production.quantity}}</td>
+                    <td>
+                      <a class="btn btn-outline-info sm" href="{% url 'production-detail' production.id %}">
+                        Details
+                      </a>             
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>
+{%endblock%}
+
